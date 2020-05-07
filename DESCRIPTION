@@ -1,0 +1,20 @@
+Package: RAPInetMHCpan
+Type: Package
+Title: an R API to netMHCpan and netMHCIIpan softwares for neural network prediction of peptide binders
+Version: 0.1.0
+Author: Elmer A. Fernández
+Maintainer: The package maintainer <elmerfer@gmail.com>
+Description: The packahe facilitates the instalation of netMHCpan and netMHCIIpan softwares, providing versatility
+    to the exploration of peptides results.
+Imports:
+    ggplot2,
+    stringr,
+    openxlsx,
+    BiocParallel,
+    ggseqlogo
+License: GPL 3
+Encoding: UTF-8
+LazyData: true  
+URL: http://github.com/elmerfer/RAPInetMHCpan
+BugReports: http://github.com/elmerfer/RAPInetMHCpan/issues
+RoxygenNote: 7.1.0
