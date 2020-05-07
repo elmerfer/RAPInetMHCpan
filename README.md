@@ -20,12 +20,13 @@ install_github("elmerfer/RAPInetMHCpan")
 
 ### Prerequisites
 You will need to install from CRAN
-[openxlsx](https://cran.r-project.org/web/packages/openxlsx/index.html)
-[ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html)
-[stringr](https://cran.r-project.org/web/packages/stringr/index.html)
-[parallel](https://cran.r-project.org/web/packages/parallel/index.html)
+* [openxlsx](https://cran.r-project.org/web/packages/openxlsx/index.html)
+* [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html)
+* [stringr](https://cran.r-project.org/web/packages/stringr/index.html)
+* [parallel](https://cran.r-project.org/web/packages/parallel/index.html)
+
 You will need to install from [Bioconductor](http://www.bioconductor.org)
-[BiocParallel](https://bioconductor.org/packages/release/bioc/html/BiocParallel.html)
+* [BiocParallel](https://bioconductor.org/packages/release/bioc/html/BiocParallel.html)
 
 ## Authors
 
