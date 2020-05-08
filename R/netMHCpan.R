@@ -59,7 +59,7 @@ RunNetMHCPan <- function(seqfile, allele, rthParam = 0.50, rltParam= 2.0, tParam
 
   res <- unlist(lapply(hla,function(al){
     arguments["a"] <- paste("-a",al)
-    print(arguments["a"])
+    # print(arguments["a"])
     s1 <- system2(command = command, stdout = TRUE, args = arguments)
     print(paste("Longitud seq:",length(s1)))
     binders <- c(which(str_detect(s1,"SB")),which(str_detect(s1,"WB")))
@@ -186,7 +186,7 @@ RunNetMHCIIPan <- function(seqfile, alleles, rankS = 0.5, rankW = 10, rankF = 10
       stop("ERROR file should end in fasta or pep")
     }
   }
-  if(is.null(hla) | missing(hla)){
+  if(is.null(alleles) | missing(alleles)){
     hlaseq <- TRUE
   }else{
     hlaseq <- FALSE
@@ -198,7 +198,7 @@ RunNetMHCIIPan <- function(seqfile, alleles, rankS = 0.5, rankW = 10, rankF = 10
 
   arguments <- c(seqtype    = paste("-inptype ", ifelse(fasta,"0","1"),sep=""),
                  seqfile    =  paste("-f", seqfile),
-                 allele     = paste("-a", hla, collapse = ","),
+                 allele     = paste("-a", alleles, collapse = ","),
                  pepL       = paste("-length", pepLength),
                  filter     = paste("-filter ", ifelse(hlaseq == FALSE,1,0)),
                  rankf      = paste("-rankF", rankF),
@@ -209,7 +209,7 @@ RunNetMHCIIPan <- function(seqfile, alleles, rankS = 0.5, rankW = 10, rankF = 10
 
   arguments <- str_replace_all(arguments,"//","/")
   seq_type='aa'
-  res <- unlist(lapply(hla,function(al){
+  res <- unlist(lapply(alleles,function(al){
     arguments["allele"] <- paste("-a",al)
     s1 <- system2(command = command, stdout = TRUE, args = arguments)
     binders <- c(which(str_detect(s1,"SB")),which(str_detect(s1,"WB")))
@@ -252,7 +252,7 @@ RunMHCIIAlleles <- function(seqfile, alleleList ,rankS = 0.5, rankW = 10, rankF 
     cat(paste("\nSetting number of cores to", nCores," as long of the HLA list input\n"))
   }
   cat(paste("\nUsing ", nCores," workers\n"))
-  print(rankW)
+
 
   ret.list <- bplapply(alleleList, function(x, sqf, wh){
     return(.RunNetMHCIIPan(seqfile = sqf, alleles = x))
