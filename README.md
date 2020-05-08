@@ -28,6 +28,8 @@ You will need to install from CRAN
 You will need to install from [Bioconductor](http://www.bioconductor.org)
 * [BiocParallel](https://bioconductor.org/packages/release/bioc/html/BiocParallel.html)
 
+### Testing the library
+Please download and run the following R script file [test.rapiNetMHCpan](https://github.com/elmerfer/RAPInetMHCpan/blob/master/test.rapiNetMHCpan.R)
 ## Authors
 
 * **Elmer A. Fernández** - *Idea and Initial work* - [elmerfer](https://github.com/elmerfer)
