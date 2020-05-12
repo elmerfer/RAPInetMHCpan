@@ -28,8 +28,9 @@ You will need to install from CRAN
 You will need to install from [Bioconductor](http://www.bioconductor.org)
 * [BiocParallel](https://bioconductor.org/packages/release/bioc/html/BiocParallel.html)
 ### Before the instalation of netMHCpan and netMHCIIpan
-Please be sure that you have the right shell to run netMHCpan and netMHCIIpan. They use the "tcsh" a Unix based shell compatible with cshel (a shel to run c code)
-To verify if you have it in your machine from a console terminal type 
+Please be sure that you have the right shell to run netMHCpan and netMHCIIpan. They both use the "tcsh", a Unix based shell compatible with cshel (a shel to run c code).
+
+To verify if you have it in your machine, please type from a console terminal the following command 
 'tsch --version'
 if succeed you will see something like:
 ![tsch output](https://github.com/elmerfer/RAPInetMHCpan/blob/master/tsch.shell.png)
