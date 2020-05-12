@@ -34,7 +34,9 @@ To verify if you have it in your machine, please type from a console terminal th
 'tsch --version'
 if succeed you will see something like:
 ![tsch output](https://github.com/elmerfer/RAPInetMHCpan/blob/master/tsch.shell.png)
-if not installed try 'sudo apt-get install tcsh' and very. If done, you may continue installing netMHCpan and netMHCIIpan through RAPInetMHCpan
+if not installed try 'sudo apt-get install tcsh' and veryfy. 
+
+If it is done, you may continue installing netMHCpan and netMHCIIpan through RAPInetMHCpan
 ### Installation of netMHCpan and netMHCIIpan with RAPInetMHCpan
 Follow the instructions and fill the form to receive the rights to download [netMHCpan](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.0) and netMHCIIpan[https://services.healthtech.dtu.dk/service.php?NetMHCIIpan-3.2] and save them to your favorite directory.
 Onpen an R session or RStudio and type:
