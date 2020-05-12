@@ -29,7 +29,10 @@ You will need to install from [Bioconductor](http://www.bioconductor.org)
 * [BiocParallel](https://bioconductor.org/packages/release/bioc/html/BiocParallel.html)
 ### Before the instalation of netMHCpan and netMHCIIpan
 Please be sure that you have the right shell to run netMHCpan and netMHCIIpan. They use the "tcsh" a Unix based shell compatible with cshel (a shel to run c code)
-To verify if you have it in your machine from a console terminal type 'tsch --version'
+To verify if you have it in your machine from a console terminal type 
+'''tsch --version'''
+if succeed you will see something like:
+![tsch output](https://github.com/elmerfer/RAPInetMHCpan/blob/master/tsch.shell.png)
 ### Testing the library
 Please download and run the following R script file [test.rapiNetMHCpan](https://github.com/elmerfer/RAPInetMHCpan/blob/master/test.rapiNetMHCpan.R)
 ## Authors
