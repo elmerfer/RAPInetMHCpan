@@ -38,8 +38,8 @@ if not installed try 'sudo apt-get install tcsh' and very. If done, you may cont
 Follow the instructions and fill the form to receive the rights to download [netMHCpan](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.0) and netMHCIIpan[https://services.healthtech.dtu.dk/service.php?NetMHCIIpan-3.2] and save them to your favorite directory.
 Onpen an R session or RStudio and type:
 ```R
-installNetMHCPan(file = "/home/.../myfavoritedir/netMHCpan-4.0a.Linux.tar.gz , data = NULL, dir = "/where i whant/dir")
-installNetMHCIIPan(file = "/home/.../myfavoritedir/netMHCIIpan-4.a.Linux.tar.gz , data = NULL, dir = "/where i whant/dir")
+installNetMHCPan(file = "/home/.../myfavoritedir/netMHCpan-4.0a.Linux.tar.gz" , data = NULL, dir = "/where i whant/dir")
+installNetMHCIIPan(file = "/home/.../myfavoritedir/netMHCIIpan-4.a.Linux.tar.gz" , data = NULL, dir = "/where i whant/dir")
 ```
 ### Testing the library
 Please download and run the following R script file [test.rapiNetMHCpan](https://github.com/elmerfer/RAPInetMHCpan/blob/master/test.rapiNetMHCpan.R)
