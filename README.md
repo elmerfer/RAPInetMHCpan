@@ -46,9 +46,12 @@ installNetMHCIIPan(file = "/home/.../myfavoritedir/netMHCIIpan-4.a.Linux.tar.gz"
 ```
 It will print on console:
 
-netMHCpan Installation OK
+`netMHCpan Installation OK`
+
 or
-netMHCIIpan Installation OK.
+
+`netMHCIIpan Installation OK`
+
 
 ### Testing the library
 Please download and run the following R script file [test.rapiNetMHCpan](https://github.com/elmerfer/RAPInetMHCpan/blob/master/test.rapiNetMHCpan.R)
