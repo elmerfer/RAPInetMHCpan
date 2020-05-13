@@ -28,7 +28,7 @@ library(seqinr)
 #' if instalation succeed, the following message is printed "netMHCpan Instaltion OK
 #'
 
-installNetMHCPan <- function(file = NULL , data = NULL, dir){
+  installNetMHCPan <- function(file = NULL , data = NULL, dir){
   if(is.null(file)){
     file <- rstudioapi::selectFile()
 
