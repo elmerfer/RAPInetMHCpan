@@ -243,8 +243,8 @@ VerifySeq <- function(seqFile , eDB){
 #' VerifySeq(eDB = result)
 #' }
 SaveExcel <- function(eDB, file){
-  tosave <- list(StrongBinders = subset(obj, Type == "SB"),
-       WeakBinders = subset(obj, Type == "WB"))
+  tosave <- list(StrongBinders = subset(eDB, Type == "SB"),
+       WeakBinders = subset(eDB, Type == "WB"))
   if( !stringr::str_detect(file, "xlsx")){
     file <- paste(file,".xlsx",sep="")
   }
