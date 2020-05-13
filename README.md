@@ -57,7 +57,7 @@ or
 Please download and run the following R script file [test.rapiNetMHCpan](https://github.com/elmerfer/RAPInetMHCpan/blob/master/test.rapiNetMHCpan.R)
 ## Authors
 
-* **Elmer A. Fernández** - *Idea and Initial work* - Centro de Investigación en Inmunología y Enfermedades Infecciosas (CIDIE) - Univ. Católica de Córdoba - CONICET, Argentina[elmerfer](https://github.com/elmerfer)
+* **Elmer A. Fernández** - *Idea and Initial work* - Centro de Investigación en Inmunología y Enfermedades Infecciosas (CIDIE) - Univ. Católica de Córdoba - CONICET, Argentina 
 
 ## License
 
