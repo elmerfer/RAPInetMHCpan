@@ -1,0 +1,27 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1588684630856.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "2BFE1D38",
+    "lastKnownWriteTime" : 1588879122,
+    "last_content_update" : 1588879122,
+    "path" : "~/Dropbox/IDEAS/Covid-19/RAPInetMHCpan/R/PlotRAPIFunctions.R",
+    "project_path" : "R/PlotRAPIFunctions.R",
+    "properties" : {
+        "cursorPosition" : "99,86",
+        "docOutlineVisible" : "1",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

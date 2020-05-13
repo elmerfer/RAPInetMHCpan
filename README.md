@@ -1,5 +1,5 @@
 # RAPInetMHCpan
-RAPInetMHCpan: a library to facilitate the instaltion and used of both netHCpan and netMHCIIpan neural netowrks for prediction of peptide binders (up to now only Linux. Windows & Mac in progress)
+RAPInetMHCpan: a library to facilitate the instaltion and used of both netHCpan and netMHCIIpan neural netowrks for prediction of peptide binders (up to now only available for Linux. Windows & Mac in progress)
 
 ## Installation of RAPInetMHCpan
 download the precompiled version of [RAPInetMHCpan](https://github.com/elmerfer/RAPInetMHCpan/blob/master/RAPInetMHCpan_0.1.0.tar.gz), then use 

@@ -1,0 +1,512 @@
+.TestCode("/home/elmer/netMHCpan-4.0")
+debugSource('~/Dropbox/IDEAS/Covid-19/RAPInetMHCpan/R/RAPInetMHCpan.R')
+debugSource('~/Dropbox/IDEAS/Covid-19/RAPInetMHCpan/R/RAPInetMHCpan.R')
+library(RAPInetMHCpan)
+.TestCode("/home/elmer/netMHCpan-4.0")
+dir
+paste(dir,"/netMHCpan",sep="")
+res
+setwd("/home/elmer/netMHCpan-4.0")
+getwd()
+getwd()
+.TestCode("/home/elmer/netMHCpan-4.0")
+res
+str_detect(res,"    1  HLA-A*02:01       AAAWYLWEV  AAAWYLWEV  0  0  0  0  0    AAAWYLWEV         PEPLIST 0.4024040  0.7289  0.7426 <= WB")
+wchich(str_detect(res,"    1  HLA-A*02:01       AAAWYLWEV  AAAWYLWEV  0  0  0  0  0    AAAWYLWEV         PEPLIST 0.4024040  0.7289  0.7426 <= WB"))
+which(str_detect(res,"    1  HLA-A*02:01       AAAWYLWEV  AAAWYLWEV  0  0  0  0  0    AAAWYLWEV         PEPLIST 0.4024040  0.7289  0.7426 <= WB"))
+which(res =="    1  HLA-A*02:01       AAAWYLWEV  AAAWYLWEV  0  0  0  0  0    AAAWYLWEV         PEPLIST 0.4024040  0.7289  0.7426 <= WB")
+res
+any(res =="    1  HLA-A*02:01       AAAWYLWEV  AAAWYLWEV  0  0  0  0  0    AAAWYLWEV         PEPLIST 0.4024040  0.7289  0.7426 <= WB")
+library(RAPInetMHCpan)
+.TestCode("/home/elmer/netMHCpan-4.0")
+getwd()
+.TestCode("/home/elmer/netMHCpan-4.0")
+library(RAPInetMHCpan)
+install.packages("~/Dropbox/IDEAS/Covid-19/RAPInetMHCpan_0.1.0.tar.gz", repos = NULL, type = "source")
+library(RAPInetMHCpan)
+.TestCode("/home/elmer/netMHCpan-4.0")
+getwd()
+.TestCode("/home/elmer/netMHCpan-4.0")
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+.TestCode
+library(RAPInetMHCpan)
+.TestCode
+.TestCode <- function(dir){
+if(str_detect(dir,"MHCII")==TRUE){
+res <- system2(paste(dir,"/netMHCIIpan",sep=""), args = "-f test/example.pep -inptype 1 -a DRB1_0101 -v",
+stdout = TRUE)
+if(any(res == "   1     DRB1_0101        AAAGAEAGKATTE    1   AAGAEAGKA     0.547        Sequence      0.001552    67.50    0.000       ")){
+cat("\nnetMHCIIpan Instalation OK")
+}else{
+stop("Error, instalation when wrong")
+}
+}else{
+res <- system2(paste(dir,"/netMHCpan",sep=""), args = "-p test/test.pep", stdout = TRUE)
+if(any(res == "    1  HLA-A*02:01       AAAWYLWEV  AAAWYLWEV  0  0  0  0  0    AAAWYLWEV         PEPLIST 0.4024040  0.7289  0.7426 <= WB")){
+cat("\n netMHCpan Instalation OK")
+}else{
+stop("Error, instalation when wrong")
+}
+}
+}
+.TestCode
+.TestCode("/home/elmer/netMHCpan-4.0")
+system.file(package = "RAPInetMHCpan")
+source('~/Dropbox/IDEAS/Covid-19/RAPInetMHCpan/R/RAPInetMHCpan.R')
+.TestCode
+.libPaths()
+source('~/Dropbox/IDEAS/Covid-19/RAPInetMHCpan/R/RAPInetMHCpan.R')
+mhcii <- readRDS(file.choose())
+class(mhcii)
+length(mhcii)
+mhcii <- FormatOut(mhcii)
+table(mhcii$Type)
+length(unique(subset(mhcii,Type == "SB")$Core))
+length(unique(subset(mhcii,Type == "WB")$Core))
+length(unique(subset(mhcii,Type == "SB")$Peptide))
+length(unique(subset(mhcii,Type == "SB")$Allele))
+length(unique(subset(mhcii,Type == "SB")$Pos))
+table(str_length(subset(mhcii,Type == "SB")$Peptide), str_length(subset(mhcii,Type == "SB")$Core)))
+table(str_length(subset(mhcii,Type == "SB")$Peptide), str_length(subset(mhcii,Type == "SB")$Core))
+summary.RAPIMHCII <- function(resDF){
+table(resDF$Type)
+}
+class(mhcii) <- "RAPIMHCII"
+summary(mhcii)
+summary.RAPIMHCII <- function(resDF){
+cat("\n-------------------\n")
+table(resDF$Type)
+cat(      "\nNumber of unique Peptides ...........SB...........WB")
+cat(paste("\n                                 ",length(unique(subset(mhcii,Type == "SB")$Core))))
+cat(paste("\n                                              ",length(unique(subset(mhcii,Type == "WB")$Core))))
+}
+summary(mhcii)
+summary.RAPIMHCII <- function(resDF){
+cat("\n-------------------\n")
+table(resDF$Type)
+cat(      "\nNumber of unique Peptides ...........SB...........WB")
+cat(paste("\n                                 ",length(unique(subset(resDF,Type == "SB")$Core))))
+cat(paste("\n                                              ",length(unique(subset(resDF,Type == "WB")$Core))))
+}
+summary(mhcii)
+source('~/Dropbox/IDEAS/Covid-19/RAPInetMHCpan/R/GeneralRAPIFunctions.R')
+library(RAPInetMHCpan)
+summary(mhcii)
+summary(mhcii)
+dim(subset(resDF , Type =="SB"))
+dim(subset(as.data.frame(resDF) , Type =="SB"))
+class(mhcii)
+class(mhcii) <- c("data.frame","RAPIMHCII")
+class(mhcii)
+summary(mhcii)
+class(mhcii) <- c("RAPIMHCII", "data.frame")
+summary(mhcii)
+dim(subset/resDF,Type == "SB"))
+dim(subset(resDF,Type == "SB"))
+summary(mhcii)
+library(RAPInetMHCpan)
+summary(mhcii)
+library(RAPInetMHCpan)
+summary(mhcii)
+summary.RAPIMHCII
+library(RAPInetMHCpan)
+summary.RAPIMHCII
+library(RAPInetMHCpan)
+summary.RAPIMHCII
+library(RAPInetMHCpan)
+mchii <- readRDS(file.choose())
+library(seqinr)
+dotPlot(letters, letters, main = "Direct repeat")
+#' @param eDB RAPIMHC or RAPIMHCII object
+#' @export
+#'
+#' @return
+#'
+#'
+#' @examples
+#' \dontrun{
+#' VerifySeq(eDB = result)
+#' }
+VerifySeq <- function(seqFile , eDB){
+if( missing( seqFile ) ){
+seqFile <- file.choose()
+}
+if(file.exists(seqFile) == FALSE){
+stop("File not found")
+}
+seq <- seqinr::read.fasta(file = seqFile, seqtype = "AA")
+##looking Peptides
+found.pep <- unlist(lapply(unique(eDB$Peptide), function(x){
+if(stringr::str_detect(seq,x )) {
+return(x)
+}else{
+return(NA)
+}
+} ))
+return(found.pep)
+}
+mhcii <- FormatOut(readRDS(file.choose()))
+source('~/Dropbox/IDEAS/Covid-19/RAPInetMHCpan/R/RAPInetMHCpan.R')
+source('~/Dropbox/IDEAS/Covid-19/RAPInetMHCpan/R/GeneralRAPIFunctions.R')
+mhcii <- FormatOut(readRDS(file.choose()))
+class(mhcii)
+VerifySeq(eb = subset(mhcii, Type == "SB"))
+VerifySeq(eDB  = subset(mhcii, Type == "SB"))
+library(RAPInetMHCpan)
+VerifySeq(eDB  = subset(mhcii, Type == "SB"))
+length(unique(eDB$Peptide))
+xx <- unique(eDB$Peptide)[1]
+xx
+str_detect(seq, xx)
+str_detect(seq, as.character(xx))
+class(seq())
+class(seq)
+length(seq)
+seq
+unlist(seq)
+paste(unlist(seq), collapse = "")
+library(RAPInetMHCpan)
+VerifySeq(eDB  = subset(mhcii, Type == "SB"))
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB  = subset(mhcii, Type == "SB"))
+library(RAPInetMHCpan)
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB  = subset(mhcii, Type == "SB"))
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB  = subset(mhcii, Type == "SB"))
+library(RAPInetMHCpan)
+VerifySeq
+library(RAPInetMHCpan)
+mhcii <- FormatOut(readRDS("/home/elmer/Elmer/Covid19/YP_009724390.1.fasta_MHCII.RDS"))
+mhcii <- readRDS("/home/elmer/Elmer/Covid19/YP_009724390.1.fasta_MHCII.RDS")
+library(RAPInetMHCpan)
+FormatOut <- function(resRAPIMHC){
+if(is.na(resRAPIMHC)[1]){
+return()
+}
+if(class(resRAPIMHC)=="RAPIMHC"){
+sal <- data.frame(do.call(rbind, lapply(resRAPIMHC, function(x) {
+if(any(c(str_detect(x,"<= SB"),str_detect(x,"<= WB")))==FALSE) {
+# n <- 1
+return()
+}
+aux <- unlist(str_split(x," "))
+aux <- aux[aux != ""]
+aux <- aux[aux != "<="]
+})))
+}else{
+sal <- data.frame(do.call(rbind, lapply(resRAPIMHC, function(x) {
+if(any(c(str_detect(x,"<=SB"),str_detect(x,"<=WB")))==FALSE) {
+# n <- 1
+return()
+}
+aux <- unlist(str_split(x," "))
+aux <- aux[aux != ""]
+aux <- aux[aux != "<="]
+})))
+}
+if(class(resRAPIMHC)=="RAPIMHC"){
+colnames(sal) <- c("Pos","Allele", "Peptide", "Core", "Offset","Dpos","Dlenght","Ipos","Ilength","InterCore","SeqName","RawScore","Affy","PercRank","Type")
+return(sal[order(sal$Type, sal$PercRank, decreasing = c(FALSE,FALSE)),])
+}else{
+colnames(sal) <- c("Pos","Allele", "Peptide", "StartPos", "Core", "Reliability","SeqName","ELscore","PercRank","Exp_bind","BAscore","Affy","BARank","Type")
+sal$Type <- str_remove_all(sal$Type,"<=")
+return(sal[order(sal$Type, sal$PercRank, decreasing = c(FALSE,FALSE)),])
+}
+}
+mhcii <- FormatOut(mhcii)
+source('~/Dropbox/IDEAS/Covid-19/RAPInetMHCpan/R/GeneralRAPIFunctions.R')
+mhcii <- FormatOut(mhcii)
+VerifySeq
+library(RAPInetMHCpan)
+VerifySeq
+library(RAPInetMHCpan)
+VerifySeq
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", sDB = subset(mhcii, Type == "SB"))
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhcii, Type == "SB"))
+library(RAPInetMHCpan)
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhcii, Type == "SB"))
+source('~/Dropbox/IDEAS/Covid-19/RAPInetMHCpan/R/GeneralRAPIFunctions.R')
+library(RAPInetMHCpan)
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhcii, Type == "SB"))
+class(seq)
+length(seq)
+library(RAPInetMHCpan)
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhcii, Type == "SB"))
+VerifySeq
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+VerifySeq
+library(RAPInetMHCpan)
+VerifySeq
+mchii <- FormatOut(readRDS("/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta"))
+mchii <- FormatOut(readRDS("/home/elmer/Elmer/Covid19/YP_009724390.1.fasta_MHCII.RDS"))
+library(stringr)
+mchii <- FormatOut(readRDS("/home/elmer/Elmer/Covid19/YP_009724390.1.fasta_MHCII.RDS"))
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhcii, Type == "SB"))
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mchii, Type == "SB"))
+ha <- seqinr::read.fasta(file.choose())
+ha
+library(RAPInetMHCpan)
+VerifySeq(eDB = subset(mchii,Type=="SB"))
+installNetMHCPan(where = "/home/elmer")
+installNetMHCIIPan(where = "/home/elmer")
+table(mchii$Type)
+summary(mchii)
+class(mchii) <- c("RAPIMCHII",class(mchii))
+summary(mchii)
+length(unique(subset(mchii, Type == "SB")$Peptide))
+library(openxlsx)
+##
+SaveExcel <- function(obj, file){
+tosave <- list(StrongBinders = subset(obj, Type == "SB"),
+WeakBinders = subset(obj, Type == "WB"))
+write.xlsx(tosave, file = file, colNames = TRUE)
+}
+SaveExcel(mchii, file = "/home/elmer/Epitopes/SCov2.spike.MHCII.xlsx")
+SaveExcel(mchii, file = "/home/elmer/Covid19/SCov2.spike.MHCII.xlsx")
+SaveExcel(mchii, file = "/home/elmer/Elmer/Covid19/SCov2.spike.MHCII.xlsx")
+SaveRDS(mchii, file = "/home/elmer/Elmer/Covid19/SCov2.spike.MHCII.RDS")
+saveRDS(mchii, file = "/home/elmer/Elmer/Covid19/SCov2.spike.MHCII.RDS")
+ha <- seqinr::read.fasta(file.choose())
+ha
+RunNetMHCPan(seqfile = file.choose(), allele = "HLA-A01:01")
+library(RAPInetMHCpan)
+RunNetMHCPan(seqfile = file.choose(), allele = "HLA-A01:01")
+library(RAPInetMHCpan)
+RunNetMHCPan(seqfile = file.choose(), allele = "HLA-A01:01")
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+RunNetMHCPan(seqfile = file.choose(), allele = "HLA-A01:01")
+RunNetMHCPan(seqfile = "/home/elmer/Elmer/Covid19/SeqsProteinas/NA.H5N1.fasta", allele = "HLA-A01:01")
+RunNetMHCPan(seqfile = "/home/elmer/Elmer/Covid19/SeqsProteinas/NA.H5N1.fasta", allele = "HLA-A01:01")
+hla
+.libPaths()
+.libPaths()[1]
+file.path(.libPaths()[1],"configIniRAPInetMHCpan.RDS")
+saveRDS("/home/elmer/Elmer/netMHCpan-4.0","/home/elmer/R/x86_64-pc-linux-gnu-library/3.6/configIniRAPInetMHCpan.RDS")
+installNetMHCPan(fi)
+installNetMHCPan(file = "/home/elmer/netMHCpan-4.0a.Linux.tar.gz", data = "/home/elmer/data.Linux.tar.gz, where = "/home/elmer/Elmer)
+library(stringr)
+installNetMHCPan(file = "/home/elmer/netMHCpan-4.0a.Linux.tar.gz", data = "/home/elmer/data.Linux.tar.gz, where = "/home/elmer/Elmer)
+installNetMHCPan(file = "~/home/elmer/netMHCpan-4.0a.Linux.tar.gz", data = "~/home/elmer/data.Linux.tar.gz, where = "/home/elmer/Elmer)
+installNetMHCPan(file = "/home/elmer/netMHCpan-4.0a.Linux.tar.gz", data = "/home/elmer/data.Linux.tar.gz, where = "/home/elmer/Elmer)
+file
+files.in.tar
+where
+class(where)
+where[1]
+where[2]
+where[3]
+length(where)
+where
+a<-where
+a
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+installNetMHCPan
+installNetMHCPan(file = "/home/elmer/netMHCpan-4.0a.Linux.tar.gz", data = "/home/elmer/data.Linux.tar.gz", dir = "/home/elmer/Elmer")
+library(stringr)
+installNetMHCPan(file = "/home/elmer/netMHCpan-4.0a.Linux.tar.gz", data = "/home/elmer/data.Linux.tar.gz", dir = "/home/elmer/Elmer")
+file.path(.libPaths()[1],files.in.tar[1])
+saveRDS(file.path(dir,files.in.tar[1]), file = file.path(.libPaths()[1],"configIniRAPInetMHCpan.RDS"))
+system.file(package = "RAPInetMHCpan")
+readRDS("/home/elmer/R/x86_64-pc-linux-gnu-library/3.6/configIniRAPInetMHCpan.RDS")
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+installNetMHCPan(file = "/home/elmer/netMHCpan-4.0a.Linux.tar.gz", data = "/home/elmer/data.Linux.tar.gz", dir = "/home/elmer/Elmer")
+library(RAPInetMHCpan)
+installNetMHCIIPan(file = "/home/elmer/netMHCIIpan-4.0.Linux.tar.gz", data = "/home/elmer/data.tar.gz", dir = "/home/elmer/Elmer")
+library(RAPInetMHCpan)
+installNetMHCIIPan(file = "/home/elmer/netMHCIIpan-4.0.Linux.tar.gz", data = "/home/elmer/data.tar.gz", dir = "/home/elmer/Elmer")
+installNetMHCPan(file = "/home/elmer/netMHCpan-4.0a.Linux.tar.gz", data = "/home/elmer/data.Linux.tar.gz", dir = "/home/elmer/Elmer")
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+library(RAPInetMHCpan)
+# HLA-A02:01,HLA-A01:01
+RunNetMHCPan(seqfile = "/home/elmer/Elmer/Covid19/SeqsProteinas/NA.H5N1.fasta", allele = "HLA-A01:01")
+# HLA-A02:01,HLA-A01:01
+RunNetMHCPan(seqfile = "/home/elmer/Elmer/Covid19/SeqsProteinas/NA.H5N1.fasta", allele = "HLA-A01:01")
+file.path(system.file(package = "RAPInetMHCpan"),"configIniRAPInetMHCpan.RDS")
+library(RAPInetMHCpan)
+# HLA-A02:01,HLA-A01:01
+RunNetMHCPan(seqfile = "/home/elmer/Elmer/Covid19/SeqsProteinas/NA.H5N1.fasta", allele = "HLA-A01:01")
+# HLA-A02:01,HLA-A01:01
+RunNetMHCPan(seqfile = "/home/elmer/Elmer/Covid19/SeqsProteinas/NA.H5N1.fasta", allele = "HLA-A01:01")
+file.exists(file.path(system.file(package = "RAPInetMHCpan"),"configIniRAPInetMHCpan.RDS"))
+file.path(system.file(package = "RAPInetMHCpan"),"configIniRAPInetMHCpan.RDS")
+.libPaths()
+saveRDS("/home/elmer/Elmer/netMHCIIpan-4.0",file.path(.libPaths()[1],"configIniRAPInetMHCIIpan.RDS"))
+saveRDS("/home/elmer/Elmer/netMHCpan-4.0",file.path(.libPaths()[1],"configIniRAPInetMHCpan.RDS"))
+library(RAPInetMHCpan)
+# HLA-A02:01,HLA-A01:01
+RunNetMHCPan(seqfile = "/home/elmer/Elmer/Covid19/SeqsProteinas/NA.H5N1.fasta", allele = "HLA-A01:01")
+# HLA-A02:01,HLA-A01:01
+RunNetMHCPan(seqfile = "/home/elmer/Elmer/Covid19/SeqsProteinas/NA.H5N1.fasta", allele = "HLA-A01:01")
+res
+library(RAPInetMHCpan)
+# HLA-A02:01,HLA-A01:01
+RunNetMHCPan(seqfile = "/home/elmer/Elmer/Covid19/SeqsProteinas/NA.H5N1.fasta", allele = "HLA-A01:01")
+# HLA-A02:01,HLA-A01:01
+out <- RunNetMHCPan(seqfile = "/home/elmer/Elmer/Covid19/SeqsProteinas/NA.H5N1.fasta", allele = "HLA-A01:01")
+dim(out)
+View(out)
+mhci <- readRDS("/home/elmer/Elmer/Covid19/YP_009724390.1.fasta_MHC.RDS")
+class(mhci)
+head(mhci)
+mhci <- FormatOut(mhci)
+mhci <- FormatOut(mhci)
+tail(mhci)
+head(mhci)
+length(mhci)
+sal <- data.frame(do.call(rbind, lapply(mhci, function(x) {
+if(any(c(str_detect(x,"<= SB"),str_detect(x,"<= WB")))==FALSE) {
+# n <- 1
+return()
+}
+aux <- unlist(str_split(x," "))
+aux <- aux[aux != ""]
+aux <- aux[aux != "<="]
+})))
+which(unlist(!str_detect(mhci, "<= SB")))
+which(unlist(!str_detect(mhci, "<= WB")))
+sal <- data.frame(do.call(rbind, lapply(mhci, function(x) {
+res <- try(any(c(str_detect(x,"<= SB"),str_detect(x,"<= WB")))==FALSE)
+if(class(res) == "try-error") {
+print(x)
+stop()
+}
+aux <- unlist(str_split(x," "))
+aux <- aux[aux != ""]
+aux <- aux[aux != "<="]
+})))
+sal <- data.frame(do.call(rbind, lapply(mhci, function(x) {
+# res <- try(any(c(str_detect(x,"<= SB"),str_detect(x,"<= WB")))==FALSE)
+res <- try(if(any(c(str_detect(x,"<= SB"),str_detect(x,"<= WB")))==FALSE) {
+print(x)
+stop()
+})
+if(class(res) == "try-error"){
+print(x)
+}
+aux <- unlist(str_split(x," "))
+aux <- aux[aux != ""]
+aux <- aux[aux != "<="]
+})))
+str_detect("# Tmpdir made /home/elmer/Epitopes/netMHCpan-4.0/tmp/TMPtTYSBU", "<= SB")
+str_detect("# Tmpdir made /home/elmer/Epitopes/netMHCpan-4.0/tmp/TMPtTYSBU", "<= WB")
+str_detect("# Tmpdir made /home/elmer/Epitopes/netMHCpan-4.0/tmp/TMPtTYSBU", "SB")
+str_detect("# Tmpdir made /home/elmer/Epitopes/netMHCpan-4.0/tmp/TMPtTYSBU", fixed("SB"))
+x <- "# Tmpdir made /home/elmer/Epitopes/netMHCpan-4.0/tmp/TMPtTYSBU"
+any(c(str_detect(x,"<= SB"),str_detect(x,"<= WB"))
+)
+any(c(str_detect(x,"<= SB"),str_detect(x,"<= WB")))==FALSE
+sal <- data.frame(do.call(rbind, lapply(mhci, function(x) {
+if(any(c(str_detect(x,"<= SB"),str_detect(x,"<= WB")),na.rm=T)==FALSE) {
+print(x)
+return()
+})
+if(class(res) == "try-error"){
+print(x)
+}
+aux <- unlist(str_split(x," "))
+aux <- aux[aux != ""]
+aux <- aux[aux != "<="]
+})))
+sal <- data.frame(do.call(rbind, lapply(mhci, function(x) {
+if(any(c(str_detect(x,"<= SB"),str_detect(x,"<= WB")),na.rm=T)==FALSE) {
+print(x)
+return()
+}
+aux <- unlist(str_split(x," "))
+aux <- aux[aux != ""]
+aux <- aux[aux != "<="]
+})))
+head(sal)
+library(RAPInetMHCpan)
+mhci <- FormatOut(mhci)
+saveRDS(mhci, "SCov2.MHCpan.RDS")
+dim(mchi)
+dim(mhci)
+length(unique(subset(mhci, Type == "SB")$Peptides))
+length(unique(subset(mhci, Type == "SB")$Peptide))
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mchi, Type == "SB"))
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhci, Type == "SB"))
+length(VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhci, Type == "SB")))
+ret <- VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhci, Type == "SB"))
+class(ret)
+class(ret$`sp|P59594|14-1255`)
+library(RAPInetMHCpan)
+ret <- VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhci, Type == "SB"))
+names(ret)
+class(mhci)
+class(mhci) <- c("RAPIMHC",class(mhci))
+ret <- VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhci, Type == "SB"))
+library(RAPInetMHCpan)
+ret <- VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhci, Type == "SB"))
+names(ret)
+length(ret$Peptide)
+length(unique(ret$Peptide))
+library(BiocParallel)
+BiocParallel::bpnworkers()
+match.arg("A", c("B","D"))
+a<- try(match.arg("A", c("B","D")))
+a<- try(match.arg("A", c("A","D")))
+a
+a<- try(match.arg("A", c("B","D")))
+a
+library(RAPInetMHCpan)
+mhci <- readRDS(file = "/home/elmer/Elmer/Covid19/YP_009724390.1.fasta_MHC.RDS")
+class(mhci)
+head(mhci)
+mhci <- FormatOut(mhci)
+library(stringr)
+mhci <- FormatOut(mhci)
+table(mhci$Type)
+length(unique(subset(mhci, Type == "SB")$Peptide))
+length(unique(subset(mhci, Type == "SB")$InterCore))
+length(VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhci, Type == "SB")))
+ret <- VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhci, Type == "SB"))
+length(ret$Peptide)
+names(ret)
+class(mhci)
+class(mhci) <- c("RAPIMHC", "data.frame")
+ret <- VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhci, Type == "SB"))
+names(ret)
+length(ret$InterCore)
+PlotPeptideLengthDistribution(resDF = subset(mhci, Type == "SB"), main = "SB")
+class(subset(mhci, Type == "SB"))
+library(RAPInetMHCpan)
+PlotPeptideLengthDistribution(resDF = subset(mhci, Type == "SB"), main = "SB")
+library(RAPInetMHCpan)
+PlotPeptideLengthDistribution(resDF = subset(mhci, Type == "SB"), main = "SB")
+class(resDF)
+colnames(resDF)
+library(RAPInetMHCpan)
+PlotPeptideLengthDistribution(resDF = subset(mhci, Type == "SB"), main = "SB")
+library(RAPInetMHCpan)
+PlotPeptideLengthDistribution(resDF = subset(mhci, Type == "SB"), main = "SB")
+library(ggplot2)
+PlotPeptideLengthDistribution(resDF = subset(mhci, Type == "SB"), main = "SB")
+library(RAPInetMHCpan)
+PlotPeptideLengthDistribution(resDF = subset(mhci, Type == "SB"), main = "SB")
+PlotPeptideBindingDistribution(resDF = subset(mhci, Type == "SB"), main = "SB")
+PlotBindingPeptideDistribution(resDF = subset(mhci, Type == "SB"), main = "SB")
+RepresentedRegions(resDF = subset(mhci, Type == "SB"), main = "SB")
+getwd()
+pdf(file = "/home/elmer/Dropbox/IDEAS/Covid-19/RepresentedRegions.pdf", width = 4, height = 4 )
+RepresentedRegions(resDF = subset(mhci, Type == "SB"), main = "Strong Binders")
+dev.off()
+pdf(file = "/home/elmer/Dropbox/IDEAS/Covid-19/RepresentedRegions.pdf", paper= "a4", width = 4, height = 4 )
+RepresentedRegions(resDF = subset(mhci, Type == "SB"), main = "Strong Binders", nbk = 50)
+dev.off()
+pdf(file = "/home/elmer/Dropbox/IDEAS/Covid-19/RepresentedRegions.pdf", paper= "a4")
+RepresentedRegions(resDF = subset(mhci, Type == "SB"), main = "Strong Binders", nbk = 50)
+dev.off()

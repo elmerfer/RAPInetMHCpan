@@ -1,0 +1,9 @@
+No hay información de rastreo para la rama actual.
+Por favor especifica a qué rama quieres rebasar.
+Ver git-pull(1) para detalles.
+
+git pull <remoto> <rama>
+  
+  Si deseas configurar el rastreo de información para esta rama, puedes hacerlo con:
+  
+  git branch --set-upstream-to=origin/<rama> master

@@ -1,0 +1,16 @@
+sal <- data.frame(do.call(rbind, lapply(mhci, function(x) {
+  
+  if(any(c(str_detect(x,"<= SB"),str_detect(x,"<= WB")),na.rm=T)==FALSE) {
+    print(x)
+    return()
+  }
+  
+  aux <- unlist(str_split(x," "))
+  aux <- aux[aux != ""]
+  aux <- aux[aux != "<="]
+})))
+
+
+x <- "# Tmpdir made /home/elmer/Epitopes/netMHCpan-4.0/tmp/TMPtTYSBU"
+any(c(str_detect(x,"<= SB"),str_detect(x,"<= WB"))
+    

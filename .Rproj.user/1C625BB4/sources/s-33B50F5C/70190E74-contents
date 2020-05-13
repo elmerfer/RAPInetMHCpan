@@ -1,0 +1,108 @@
+library(stringr)
+library(RAPInetMHCpan)
+library(openxlsx)
+mchii <- FormatOut(readRDS("/home/elmer/Elmer/Covid19/YP_009724390.1.fasta_MHCII.RDS"))
+mhci <- FormatOut(readRDS(file = "/home/elmer/Elmer/Covid19/YP_009724390.1.fasta_MHC.RDS"))
+
+##number of Strong and Weah MHC II binders
+table(mchii$Type)
+length(unique(subset(mchii,Type == "SB")$Peptide))
+# [1] 279
+length(unique(subset(mchii,Type == "WB")$Peptide))
+# [1] 920
+##number of Strong and Weah MHC I binders
+table(mhci$Type)
+length(unique(subset(mhci,Type == "SB")$Peptide))
+# [1] 1320
+length(unique(subset(mhci,Type == "WB")$Peptide))
+# [1] 3090
+
+
+SaveExcel(mchii, "/home/elmer/Elmer/Covid19/YP_009724390.1.fasta_MHCII.xlsx")
+SaveExcel(mhci, "/home/elmer/Elmer/Covid19/YP_009724390.1.fasta_MHCI.xlsx")
+
+                  mhci <- FormatOut(mhci)
+table(mhci$Type)
+length(unique(subset(mhci, Type == "SB")$Peptide))
+length(unique(subset(mhci, Type == "SB")$InterCore))
+
+class(mhci) <- c("RAPIMHC", "data.frame")
+VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mchii, Type == "SB"))
+ret <- VerifySeq(seqFile = "/home/elmer/Elmer/Covid19/SeqsProteinas/SARS_spike.fasta", eDB = subset(mhci, Type == "SB"))
+length(ret$Peptide)
+length(ret$InterCore)
+
+PlotPeptideLengthDistribution(resDF = subset(mhci, Type == "SB"), main = "SB")
+
+
+names(ret)
+table(mchii$Type)
+class(mchii) <- c("RAPIMCHII",class(mchii))
+length(unique(subset(mchii, Type == "SB")$Peptide))
+
+
+ha <- seqinr::read.fasta(file.choose())
+# HLA-A02:01,HLA-A01:01
+RunNetMHCPan(seqfile = "/home/elmer/Elmer/Covid19/SeqsProteinas/NA.H5N1.fasta", allele = "HLA-A01:01")
+p <- RepresentedRegions(resDF = subset(mhci, Type == "SB"), main = "Strong Binders", nbk = 400)+ylab("Peptide counts")
+pdf(file = "/home/elmer/Dropbox/IDEAS/Covid-19/RepresentedRegions.pdf", paper= "a4", width = 4, height = 4)
+print(p)
+dev.off()
+pdf(file = "/home/elmer/Dropbox/IDEAS/Covid-19/PeptideBinder.pdf", paper= "a4", width = 7, height = 4)
+PeptideBindersLogo(eDB = mhci, size = 12, type = "Peptide")
+dev.off()
+
+
+Summary <- function(eDB, file){
+  if("RAPIMHC" %in% class(eDB)){
+    print("Task 1 run\n")
+    SB <- list(Peptides = .Summary(subset(eDB, Type == "SB"), type = "Peptide"),
+         InteractionCores = .Summary(subset(eDB, Type == "SB"), type = "InterCore"))
+    print("Task SB done")
+    WB <- list(Peptides = .Summary(subset(eDB, Type == "WB"), type = "Peptide"),
+               InteractionCores = .Summary(subset(eDB, Type = "WB"), type = "InterCore"))
+  }else{
+    SB <- list(Peptides = .Summary(subset(eDB, Type == "SB"), type = "Peptide"))
+    WB <- list(Peptides = .Summary(subset(eDB, Type == "WB"), type = "Peptide"))
+  }
+  return(list(SB=SB,WB=WB))
+}
+
+.Summary <- function(db, type){
+  # type <- "Peptide"
+  # db <- subset(eDB, Type == "SB")
+
+  if("RAPIMHC" %in% class(db)){
+    group <- do.call(rbind,str_split(db$Allele,"\\*"))
+    genes <- do.call(rbind, str_split(group[,2],":"))
+    group <- data.frame(Group = group[,1], Gene=genes[,1], Variant = genes[,2])
+  }else{
+    # db <- subset(mchii, Type =="SB")
+    Group <- str_split(db$Allele,"_")
+    Group <- unlist(lapply(Group, function(x) as.character(x[1])))
+    Group[str_detect(Group,"HLA")] <- "HLA"
+    group <- data.frame(Group=as.factor(Group))
+
+  }
+
+  upep <- unique(db[,type])
+  tab <-  bplapply(upep, function(x){
+    id <- which(db[,type] == x)
+    c(Pos =db$Pos[id][1], table(group$Group[id]))
+  }, BPPARAM = MulticoreParam(workers = 3))
+
+  ll<- do.call(rbind,tab)
+  rownames(ll) <- upep
+  return(ll)
+}
+
+class(mhci) <- c("RAPIMHC", "data.frame")
+class(mhci)
+Pep <- Summary(mhci)
+class(mchii)
+PepII <- Summary(mchii)
+
+write.xlsx(Pep$SB, file ="/home/elmer/Elmer/Covid19/YP_009724390.1.MHCI_SB.xlsx", rowNames=TRUE)
+write.xlsx(Pep$WB, file ="/home/elmer/Elmer/Covid19/YP_009724390.1.MHCI_WB.xlsx", rowNames=TRUE)
+write.xlsx(PepII$SB, file ="/home/elmer/Elmer/Covid19/YP_009724390.1.MHCII_SB.xlsx", rowNames=TRUE)
+write.xlsx(PepII$WB, file ="/home/elmer/Elmer/Covid19/YP_009724390.1.MHCII_WB.xlsx", rowNames=TRUE)

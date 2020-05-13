@@ -1,0 +1,27 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1588621057392.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9D8D38B2",
+    "lastKnownWriteTime" : 1589293028,
+    "last_content_update" : 1589293028552,
+    "path" : "~/Dropbox/IDEAS/Covid-19/RAPInetMHCpan/R/RAPInetMHCpan.R",
+    "project_path" : "R/RAPInetMHCpan.R",
+    "properties" : {
+        "cursorPosition" : "33,0",
+        "docOutlineVisible" : "1",
+        "notebook_format" : "html_document",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
