@@ -139,7 +139,7 @@ RunMHCAlleles <- function(seqfile, alleleList , rthParam = 0.50, rltParam= 2.0, 
   ret.list <- unlist(ret.list)
   class(ret.list) <- "RAPIMHC"
   ret <- FormatOut(ret.list)
-  class(ret) <- c("RAPIMCH", class(ret))
+  class(ret) <- c("RAPIMHC", class(ret))
   return(ret)
 }
 ##............................................................................................
