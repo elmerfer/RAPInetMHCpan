@@ -40,7 +40,7 @@ library(seqinr)
     stop("File not found")
   }
   if(!str_detect(file,"Linux")){
-    stop("Only linux instalation")
+    stop("Only linux installation")
   }
 
   .netMHCpan.file <- basename(file)
@@ -97,16 +97,16 @@ library(seqinr)
     res <- system2(paste(dir,"/netMHCIIpan",sep=""), args = "-f test/example.pep -inptype 1 -a DRB1_0101 -v",
                    stdout = TRUE)
     if(any(res == "   1     DRB1_0101        AAAGAEAGKATTE    1   AAGAEAGKA     0.547        Sequence      0.001552    67.50    0.000       ")){
-      cat("\nnetMHCIIpan Instalation OK")
+      cat("\nnetMHCIIpan Installation OK")
     }else{
-      stop("Error, instalation went wrong")
+      stop("Error, installation went wrong")
     }
   }else{
     res <- system2(paste(dir,"/netMHCpan",sep=""), args = "-p test/test.pep", stdout = TRUE)
     if(any(res == "    1  HLA-A*02:01       AAAWYLWEV  AAAWYLWEV  0  0  0  0  0    AAAWYLWEV         PEPLIST 0.4024040  0.7289  0.7426 <= WB")){
-      cat("\n netMHCpan Instalation OK\n")
+      cat("\n netMHCpan Installation OK\n")
     }else{
-      stop("Error, instalation went wrong\n")
+      stop("Error, installation went wrong\n")
     }
   }
 
@@ -167,7 +167,7 @@ installNetMHCIIPan <- function(file = NULL , data = NULL, dir ){
     stop("File not found")
   }
   if(!str_detect(file,"Linux")){
-    stop("Only linux instalation")
+    stop("Only linux installation")
   }
 
   .netMHCpan.file <- basename(file)
