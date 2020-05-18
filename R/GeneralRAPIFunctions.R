@@ -1,11 +1,10 @@
 ### GENERAL FUNCTIONS ####
 #'  FormatOut
 #'
-#' generate a ggplot2, where in the y axis the amount of alleles bindig to the sequence starting at x position is displayed
+#' Internal function, it format the output. This function should not be used
 #'
 #'
 #' @param resRAPIMHC an object results
-#' @export
 #'
 #' @return
 #'

@@ -29,7 +29,7 @@ PlotPeptideLengthDistribution <- function(resDF, main){
 
   df$PeptideType <- factor(df$PeptideType, levels= c("Peptide","Interaction"))
 
-  pl <- ggplot2::ggplot(df, aes(Length)) + ggplot2::geom_bar() + ggplot2::facet_grid(cols = vars(PeptideType))
+  pl <- ggplot2::ggplot(df, ggplot2::aes(Length)) + ggplot2::geom_bar() + ggplot2::facet_grid(cols = ggplot2::vars(PeptideType))
   if(missing(main)) {
     print(pl)
   }else print(pl + ggplot2::ggtitle(main))
@@ -38,12 +38,12 @@ PlotPeptideLengthDistribution <- function(resDF, main){
 
 #'  PlotBindingPeptideDistribution
 #'
-#' generate a ggplot2, where in the y axis the amount of alleles bindig to the sequence starting at x position is displayed
+#' generate a ggplot2, displays bars indicating the amount of predicted peptides of different lengths
 #'
 #'
 #' @param resDF a data frame or RAPIMHCI or RAPIMHCII class object
 #' @param pepLevel peptide level filter ¡?
-#' @param main a cg¿haracter with a plot title
+#' @param main a character with a plot title
 #' @export
 #'
 #' @return
@@ -57,11 +57,17 @@ PlotBindingPeptideDistribution <- function(resDF, pepLevel = 0, main){
 
   top.p <- data.frame(N=c(sort(table(resDF$Peptide),decreasing = TRUE)), PeptideType = "Peptide")
   top.p$X <- 1:nrow(top.p)
+  if("RAPIMHC" %in% class(resDF)){
+    top.ic <- data.frame(N=c(sort(table(resDF$InterCore),decreasing = TRUE)), PeptideType = "Interaction")
+    top.ic$X <- 1:nrow(top.ic)
+    df <- data.frame(rbind(top.p, top.ic))
+    df$PeptideType <- factor(df$PeptideType, levels = c("Peptide","Interaction") )
+  }else{
+    df <- top.p
+    df$PeptideType < "Peptide"
+  }
 
-  top.ic <- data.frame(N=c(sort(table(resDF$InterCore),decreasing = TRUE)), PeptideType = "Interaction")
-  top.ic$X <- 1:nrow(top.ic)
-  df <- data.frame(rbind(top.p, top.ic))
-  df$PeptideType <- factor(df$PeptideType, levels = c("Peptide","Interaction") )
+
   pl <- ggplot(subset(df, N > pepLevel), aes(y=N,x=X)) +  geom_point() + facet_grid(rows = vars(PeptideType))
   if(missing(main)) {
     print(pl)
@@ -71,7 +77,7 @@ PlotBindingPeptideDistribution <- function(resDF, pepLevel = 0, main){
 #'  PlotPeptideLengthDistribution
 #'
 #' generate a ggplot2, where in the y axis the amount of alleles bindig to the sequence starting at x position is displayed
-#'
+#' they are also known as "immunodominsnt regions" as in Contact https://doi.org/10.1016/j.chom.2020.03.002
 #'
 #' @param resDF a data frame or RAPIMHCI or RAPIMHCII class object
 #' @param main a cg¿haracter with a plot title
