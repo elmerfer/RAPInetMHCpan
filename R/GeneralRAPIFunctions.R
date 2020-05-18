@@ -45,7 +45,7 @@ FormatOut <- function(resRAPIMHC){
   }
 
   if(class(resRAPIMHC)=="RAPIMHC"){
-    colnames(sal) <- c("Pos","Allele", "Peptide", "Core", "Offset","Dpos","Dlenght","Ipos","Ilength","InterCore","SeqName","RawScore","Affy","PercRank","Type")
+    colnames(sal) <- c("Pos","Allele", "Peptide", "Core", "Offset","Dpos","Dlength","Ipos","Ilength","InterCore","SeqName","RawScore","Affy","PercRank","Type")
     return(sal[order(sal$Type, sal$PercRank, decreasing = c(FALSE,FALSE)),])
   }else{
     colnames(sal) <- c("Pos","Allele", "Peptide", "StartPos", "Core", "Reliability","SeqName","ELscore","PercRank","Exp_bind","BAscore","Affy","BARank","Type")
