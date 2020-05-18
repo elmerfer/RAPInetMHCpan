@@ -55,8 +55,9 @@ RunNetMHCPan <- function(seqfile, allele, rthParam = 0.50, rltParam= 2.0, tParam
                  v = "-v","-BA",
                  a = paste("-a", NULL),
                  l= paste("-l ",long.pep))
+  nm <- names(argumens)
   arguments <- str_replace_all(arguments,"//","/")
-
+  names(arguments) <- nm
   res <- unlist(lapply(hla,function(al){
     arguments["a"] <- paste("-a",al)
     # print(arguments["a"])
@@ -206,8 +207,9 @@ RunNetMHCIIPan <- function(seqfile, alleles, rankS = 0.5, rankW = 10, rankF = 10
                  rank       = paste("-rankW", rankW),
                  BA         = "-BA",
                  context    = "-context")
-
+ nm <- names(arguments)
   arguments <- str_replace_all(arguments,"//","/")
+  names(arguments) <- nm
   seq_type='aa'
   res <- unlist(lapply(alleles,function(al){
     arguments["allele"] <- paste("-a",al)
