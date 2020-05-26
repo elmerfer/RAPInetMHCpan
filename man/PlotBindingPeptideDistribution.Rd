@@ -11,13 +11,13 @@ PlotBindingPeptideDistribution(resDF, pepLevel = 0, main)
 
 \item{pepLevel}{peptide level filter ¡?}
 
-\item{main}{a cg¿haracter with a plot title}
+\item{main}{a character with a plot title}
 }
 \value{
 a ggplot2 object
 }
 \description{
-generate a ggplot2, where in the y axis the amount of alleles bindig to the sequence starting at x position is displayed
+generate a ggplot2, displays bars indicating the amount of predicted peptides of different lengths
 }
 \examples{
 \dontrun{
