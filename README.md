@@ -52,7 +52,8 @@ or
 
 `netMHCIIpan Installation OK`
 
-
+### Tutorial
+See examples [here](/vignette/RAPInetMHCpan.html)
 ### Testing the library
 Please download and run the following R script file [test.rapiNetMHCpan](https://github.com/elmerfer/RAPInetMHCpan/blob/master/test.rapiNetMHCpan.R)
 ## Authors
