@@ -40,40 +40,39 @@ or
 
 
 
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
+## Running 
 ```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+library(seqinr)
+library(stringr)
+library(BiocParallel)
+library(openxlsx)
+library(RAPInetMHCpan)
+
+#this sequence segment belongs to NA H5N1 .[(GenBank: AAC32089.1)
+myseq <- s2c("MNPNQKIITIGSICMVVGIISLMLQIGNIISVWVSHIIQTWHPNQPEPCNQSINFYTEQAAASVTLAGNSSLCPISGWAIYSKDNSIRIGSKGDVF")
+
+seqfile <- file.path(.libPaths()[1],"filetest.fasta")
+write.fasta(myseq, file.out = seqfile,
+            name = "NA H5N1 .[(GenBank: AAC32089.1) short sequence]")
+if(!file.exists(seqfile)){
+  stop("ERROR: pls check path")
+}
+##Run for a unique allele for MHC I
+t <- Sys.time()
+ret <- RunNetMHCPan(seqfile = seqfile, allele = "HLA-A01:01")
+print(Sys.time()-t)
+knitr::kable(ret, "pandoc")
+```
+These table shows the RAPIMHC result class objects with the.
+
+The following plot shows the first Peptide and its interaction core  surrounded by squares. The intermediate segment refers to a "deletion"  interpreted as a peptide segment bulging out from the MHC binding cleft.
+```{r, fig.show='hold'}
+PlotPeptideCore(eDB = ret, index = 1)
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
-
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+The following function will display all the Peptides logo of different lengths. If several peptides of the same length are found, they will be displayed together.
+```{r, fig.show='hold'}
+PeptideBindersLogo(eDB = ret)
 ```
 
-Also a quote using `>`:
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))

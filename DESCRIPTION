@@ -12,9 +12,13 @@ Imports:
     openxlsx,
     BiocParallel,
     ggseqlogo
+Suggests: 
+    knitr, 
+        rmarkdown
 License: GPL 3
 Encoding: UTF-8
 LazyData: true  
 URL: http://github.com/elmerfer/RAPInetMHCpan
 BugReports: http://github.com/elmerfer/RAPInetMHCpan/issues
 RoxygenNote: 7.1.0
+VignetteBuilder: knitr

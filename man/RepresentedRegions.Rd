@@ -23,6 +23,7 @@ a ggplot2 object
 }
 \description{
 generate a ggplot2, where in the y axis the amount of alleles bindig to the sequence starting at x position is displayed
+they are also known as "immunodominsnt regions" as in Contact https://doi.org/10.1016/j.chom.2020.03.002
 }
 \examples{
 \dontrun{

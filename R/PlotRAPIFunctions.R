@@ -135,9 +135,15 @@ PeptideBindersLogo <- function(eDB, size = c(8:14), type = c("Peptide","InterCor
     type = match.arg(type,c("Peptide","InterCore"))
     if( min(size)>= 8 & max(size) <=14 ){
       seqs.aa <- lapply(size, function(x){
-        unique(as.character(eDB[which(stringr::str_length(eDB[,type])==x),type]))
+        sqs <- unique(as.character(eDB[which(stringr::str_length(eDB[,type])==x),type]))
+        if(length(sqs)>0){
+          return(sqs)
+        }else{
+          return()
+        }
       })
       names(seqs.aa) <- size
+      seqs.aa <- seqs.aa[-which(sapply(seqs.aa, is.null))]
       gl <- ggseqlogo::ggseqlogo(seqs.aa, seq_type='aa', ncol=2, nrow = round(max(size)/2,0), method = 'prob' )
     }else{
       stop("ERROR: size range between 8 and 14")
@@ -244,14 +250,28 @@ PlotPeptideCore <- function(eDB, index){
       dpo <- as.numeric(as.character(eDB[index,]$Dpos))
       ile <- as.numeric(as.character(eDB[index,]$Dlength))+1
       off <- as.numeric(as.character(eDB[index,]$Offset))
-      bl <- ifelse(off+dpo+ile+dpo>= str_length(seq.ins), str_length(seq.ins) + 0.5, off+dpo+ile+dpo+0.5)
-      p1 <- ggplot2::ggplot() +
-        ggplot2::annotate('rect', xmin = 0.5+off, xmax = off+dpo+0.5, ymin = -0.25, ymax = 1.25, alpha = .1, col='black', fill='yellow') +
-        ggplot2::annotate('rect', xmin = off+dpo+ile-0.5, xmax = bl, ymin = -0.25, ymax = 1.25, alpha = .1, col='black', fill='yellow') +
-        ggseqlogo::geom_logo(as.character(seq.ins), stack_width = 0.90, method = "prob") + ggplot2::ggtitle(seq.ins)+
-        ggseqlogo::theme_logo()
-      print(p1)
-      return(invisible(p1))
+
+      if(off>0){
+        bl <- ifelse(off+dpo+ile+dpo>= str_length(seq.ins), str_length(seq.ins) + 0.5, off+dpo+ile+dpo+0.5)
+        p1 <- ggplot2::ggplot() +
+          ggplot2::annotate('rect', xmin = 0.5+off, xmax = off+dpo+0.5, ymin = -0.25, ymax = 1.25, alpha = .1, col='black', fill='yellow') +
+          ggplot2::annotate('rect', xmin = off+dpo+ile-0.5, xmax = bl, ymin = -0.25, ymax = 1.25, alpha = .1, col='black', fill='yellow') +
+          ggseqlogo::geom_logo(as.character(seq.ins), stack_width = 0.90, method = "prob") + ggplot2::ggtitle(seq.ins)+
+          ggseqlogo::theme_logo()
+        print(p1)
+        return(invisible(p1))
+      }else{
+
+        bl <- ifelse(2+off+dpo+ile+dpo>= str_length(seq.ins), str_length(seq.ins) + 0.5, 1+off+dpo+ile+dpo+0.5)
+        p1 <- ggplot2::ggplot() +
+          ggplot2::annotate('rect', xmin = 0.25, xmax = off+dpo+0.5, ymin = -0.25, ymax = 1.25, alpha = .1, col='black', fill='yellow') +
+          ggplot2::annotate('rect', xmin = off+dpo+ile-0.5, xmax = bl, ymin = -0.25, ymax = 1.25, alpha = .1, col='black', fill='yellow') +
+          ggseqlogo::geom_logo(as.character(seq.ins), stack_width = 0.90, method = "prob") + ggplot2::ggtitle(seq.ins)+
+          ggseqlogo::theme_logo()
+        print(p1)
+        return(invisible(p1))
+      }
+
     }
   }
 }
