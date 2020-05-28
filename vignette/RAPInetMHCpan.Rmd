@@ -1,0 +1,78 @@
+---
+title: "RAPInetMHCpan"
+author: "Elmer A. Fernández"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{RAPInetMHCpan}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+This is an R Application Program Interface for the well known softwares [netMHCpan](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.0) and [netMHCIIpan](https://services.healthtech.dtu.dk/service.php?NetMHCIIpan-3.2). The RAPInetMHCpan package allows easy deployment of such softwares into your own machine, facilitates their used trhrough full R code and allow multicore processing.
+
+
+## Installing netMHCpan and netMHCIIpan
+
+The RAPInetMHCpan library allows you installing both softwares from their tar ball zipped files (up to now only version 4.0 for both softwares).
+NOTE: please red and follow the [Readme](https://github.com/elmerfer/RAPInetMHCpan) from the main github page.
+
+From [Technical University of Denmark](https://services.healthtech.dtu.dk/) follow the instructions and fill the form to receive the rights to download [netMHCpan](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.0) and [netMHCIIpan](https://services.healthtech.dtu.dk/service.php?NetMHCIIpan-3.2). Save them to your favorite directory ("/home/../myfavoritedir/..").
+
+Open an R session or RStudio and type:
+```R
+installNetMHCPan(file = "/home/.../myfavoritedir/netMHCpan-4.0a.Linux.tar.gz" , data = NULL, dir = "/where i whant/dir")
+installNetMHCIIPan(file = "/home/.../myfavoritedir/netMHCIIpan-4.a.Linux.tar.gz" , data = NULL, dir = "/where i whant/dir")
+```
+It will print on console:
+
+`netMHCpan Installation OK`
+
+or
+
+`netMHCIIpan Installation OK`
+
+
+
+## Running 
+```{r, fig.show='hold'}
+library(seqinr)
+library(stringr)
+library(BiocParallel)
+library(openxlsx)
+library(RAPInetMHCpan)
+
+#this sequence segment belongs to NA H5N1 .[(GenBank: AAC32089.1)
+myseq <- s2c("MNPNQKIITIGSICMVVGIISLMLQIGNIISVWVSHIIQTWHPNQPEPCNQSINFYTEQAAASVTLAGNSSLCPISGWAIYSKDNSIRIGSKGDVF")
+
+seqfile <- file.path(.libPaths()[1],"filetest.fasta")
+write.fasta(myseq, file.out = seqfile,
+            name = "NA H5N1 .[(GenBank: AAC32089.1) short sequence]")
+if(!file.exists(seqfile)){
+  stop("ERROR: pls check path")
+}
+##Run for a unique allele for MHC I
+t <- Sys.time()
+ret <- RunNetMHCPan(seqfile = seqfile, allele = "HLA-A01:01")
+print(Sys.time()-t)
+knitr::kable(ret, "pandoc")
+```
+These table shows the RAPIMHC result class objects with the.
+
+The following plot shows the first Peptide and its interaction core  surrounded by squares. The intermediate segment refers to a "deletion"  interpreted as a peptide segment bulging out from the MHC binding cleft.
+```{r, fig.show='hold'}
+PlotPeptideCore(eDB = ret, index = 1)
+```
+
+The following function will display all the Peptides logo of different lengths. If several peptides of the same length are found, they will be displayed together.
+```{r, fig.show='hold'}
+PeptideBindersLogo(eDB = ret)
+```
+
+
