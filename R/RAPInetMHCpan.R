@@ -8,19 +8,19 @@ library(seqinr)
 .netMHCpan.file <- NULL
 #  installNetMHCPan
 #'
-#' Painless instalation tool for netMHCpan in linux and R
+#' Painless installation tool for netMHCpan in linux and R
 #'
 #'
 #' @param file NULL (default) or character with the netMHCpanXX.Linux.tar.gz file. If NULL, a file selection dialog window will be opened.
 #' @param data NULL(default) or character with the path of the data.Linux.tar.gz data file. If NULL it will be automatically downloaded from the netMHCpan server (it may take time)
-#' @param dir  character  direrctory of dir the software will be installed
+#' @param dir  character  directory of dir the software will be installed
 #'
-#' @details install the netMHCpan software in your computer and allows suing it trhough R.
-#'  as a results it will cread an RDS file named which is used to run the rest of the function
+#' @details install the netMHCpan software in your computer and allows suing it though R.
+#'  as a results it will create an RDS file named which is used to run the rest of the function
 #'  configIniRAPInetMHCpan.RDS PLEASE DO NOT DELET IT
 #'
-#' In this way, it may be run in parallel to speed up peptides sercehing trhopugh the whole HLA set.
-#' Is succesfull instalation , an output displaying the following information shoule be seen on screen.
+#' In this way, it may be run in parallel to speed up peptides searching though the whole HLA set.
+#' Is successful installation , an output displaying the following information should be seen on screen.
 #'
 #' @export
 #'

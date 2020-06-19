@@ -59,7 +59,7 @@ Please download and run the following R script file [test.rapiNetMHCpan](https:/
 ## Authors
 
 * **Elmer A. Fernández** - *Idea and Initial work* - Centro de Investigación en Inmunología y Enfermedades Infecciosas (CIDIE) - Univ. Católica de Córdoba - CONICET, Argentina 
-
+* **Macarena Rodriguez Walker** - *Sequence analysis* - Centro de Investigación en Inmunología y Enfermedades Infecciosas (CIDIE) - Univ. Católica de Córdoba - CONICET, Argentina 
 ## License
 
 This project is licensed under the GPL 3-0 License 

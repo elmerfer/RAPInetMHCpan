@@ -276,3 +276,77 @@ PlotPeptideCore <- function(eDB, index){
   }
 }
 
+#'  ImmunoDominantRegions
+#'
+#' generate a ggplot2 logo of the evaluated papetide and its binding regions (Core) allowing
+#' the identification of the Core with its deleted (bulging out) regions and predicted insertion sites
+#'
+#' @param seq a sequence from seqinr::read.fasta
+#' @param eDB a data frame or RAPIMHCI or RAPIMHCII class object
+#' @param pr The rank level. (0.5 by default)if not missing, the level of selected top rank. if pr <= 0 it just counts the AA presence in a peptide candidate
+#' @param nCores (integer) number of cores to use, if missing it will be automatically set
+#'
+#' @import ggplot2
+#' @import stringr
+#' @import seqinr
+#' @export
+#'
+#' @return
+#' a ggplot2 object
+#'
+#' @examples
+#' \dontrun{
+#' seq <- seqinr::read.fata(file = ........)
+#' ImmunoDominantRegions(seq = seq, eDB = res)
+#' }
+ImmunoDominantRegions <- function(seq, eDB, pr =  c("inverse","count"), nCores){
+
+  eDB$Pos <- as.numeric(as.character(eDB$Pos))
+  nl <- length(unique(eDB$Dlength))
+  if(nl == 0){
+    stop("Error: no peptides")
+  }
+  if(missing(nCores) ){
+    nc <- parallel::detectCores()
+    nCores <- ifelse(nc > nl, nl, nc)
+  }
+  if(is.numeric(pr)){
+    type = "linear"
+  }
+  if(is.character(pr)){
+    type <- match.arg(pr, choices = c("count","inverse"))
+  }
+  eDB$Pos <- as.numeric(as.character(eDB$Pos))
+  eDB$Offset <- as.numeric(as.character(eDB$Offset))
+  eDB$Dlength <- as.numeric(as.character(eDB$Dlength))
+  eDB$PercRank <- as.numeric(as.character(eDB$PercRank))
+  m.r <- max(eDB$PercRank)
+  seqs <- do.call(rbind,BiocParallel::bplapply(unique(eDB$Dlength), function(x){
+    seqv <- rep(0,seqinr::getLength(seq))
+    for( i in which(eDB$Dlength == x) ){
+
+      ip <- eDB[i,"Pos"] + eDB[i,"Offset"]
+      dl <- eDB[i,"Dlength"]
+
+        rank <- eDB[i,"PercRank"]
+        switch(type,
+               "count"   = seqv[ip:(ip+dl+8)] <- seqv[ip:(ip+8+dl)] + 1,
+               "inverse" = seqv[ip:(ip+dl+8)] <- seqv[ip:(ip+8+dl)] + (m.r/rank),
+               "linear"  = seqv[ip:(ip+dl+8)] <- seqv[ip:(ip+8+dl)] + (pr - rank)
+        )
+
+
+    }
+    return(data.frame(Seq=seqv, Pos = 1:length(seqv),Dlength = 9+x))
+  }, BPPARAM = BiocParallel::MulticoreParam(workers = nCores)))
+  if(attr(seq[[1]],"name") != "NA"){
+    yl <- attr(seq[[1]],"name")
+  }else{
+    yl <- attr(seq[[1]],"Annot")
+  }
+  seqs$Dlength <- factor(as.character(paste(seqs$Dlength,"mers",sep = "")), levels = paste(sort(unique(seqs$Dlength)),"mers",sep = ""))
+  p <- ggplot2::ggplot(seqs,ggplot2::aes(Pos,Seq)) + ggplot2::geom_line() + ggplot2::facet_wrap(~Dlength) + ylab(stringr::str_trunc(yl,15)) + xlab("AA position")
+  print(p)
+  return(invisible(p))
+}
+

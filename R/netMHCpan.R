@@ -15,14 +15,14 @@
 #'
 #' @return a character
 #'
-RunNetMHCPan <- function(seqfile, allele, rthParam = 0.50, rltParam= 2.0, tParam = -99.9002){
-  res <- .RunNetMHCPan(seqfile, allele, rthParam , rltParam , tParam )
+RunNetMHCPan <- function(seqfile, allele, rthParam = 0.50, rltParam= 2.0, tParam = -99.9002, pLength){
+  res <- .RunNetMHCPan(seqfile, allele, rthParam , rltParam , tParam , pLength)
   class(res) <- "RAPIMHC"
   res<-FormatOut(res)
   class(res) <- c("RAPIMHC", class(res))
   return(invisible(res))
 }
-.RunNetMHCPan <- function(seqfile, allele, rthParam = 0.50, rltParam= 2.0, tParam = -99.9002){
+.RunNetMHCPan <- function(seqfile, allele, rthParam = 0.50, rltParam= 2.0, tParam = -99.9002, pLength){
   hla <- allele
   softwarePath <- .GetPath()
   if(is.null(softwarePath) | !dir.exists(softwarePath)){
@@ -38,7 +38,12 @@ RunNetMHCPan <- function(seqfile, allele, rthParam = 0.50, rltParam= 2.0, tParam
       stop("ERROR file should end in fasta or pep")
     }
   }
-  long.pep <- paste(8:14,collapse = ",")
+  if(missing(pLength)){
+    long.pep <- paste(8:14,collapse = ",")
+  }else{
+    long.pep <- pLength
+  }
+
   command <- file.path(softwarePath,"netMHCpan")
   command <- str_replace_all(command,"//","/")
   arguments <- c(file = datafile,

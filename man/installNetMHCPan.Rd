@@ -2,7 +2,7 @@
 % Please edit documentation in R/RAPInetMHCpan.R
 \name{installNetMHCPan}
 \alias{installNetMHCPan}
-\title{Painless instalation tool for netMHCpan in linux and R}
+\title{Painless installation tool for netMHCpan in linux and R}
 \usage{
 installNetMHCPan(file = NULL, data = NULL, dir)
 }
@@ -11,19 +11,19 @@ installNetMHCPan(file = NULL, data = NULL, dir)
 
 \item{data}{NULL(default) or character with the path of the data.Linux.tar.gz data file. If NULL it will be automatically downloaded from the netMHCpan server (it may take time)}
 
-\item{dir}{character  direrctory of dir the software will be installed}
+\item{dir}{character  directory of dir the software will be installed}
 }
 \value{
 if instalation succeed, the following message is printed "netMHCpan Instaltion OK
 }
 \description{
-Painless instalation tool for netMHCpan in linux and R
+Painless installation tool for netMHCpan in linux and R
 }
 \details{
-install the netMHCpan software in your computer and allows suing it trhough R.
- as a results it will cread an RDS file named which is used to run the rest of the function
+install the netMHCpan software in your computer and allows suing it though R.
+ as a results it will create an RDS file named which is used to run the rest of the function
  configIniRAPInetMHCpan.RDS PLEASE DO NOT DELET IT
 
-In this way, it may be run in parallel to speed up peptides sercehing trhopugh the whole HLA set.
-Is succesfull instalation , an output displaying the following information shoule be seen on screen.
+In this way, it may be run in parallel to speed up peptides searching though the whole HLA set.
+Is successful installation , an output displaying the following information should be seen on screen.
 }

@@ -4,7 +4,14 @@
 \alias{RunNetMHCPan}
 \title{RunNetMHCPan}
 \usage{
-RunNetMHCPan(seqfile, allele, rthParam = 0.5, rltParam = 2, tParam = -99.9002)
+RunNetMHCPan(
+  seqfile,
+  allele,
+  rthParam = 0.5,
+  rltParam = 2,
+  tParam = -99.9002,
+  pLength
+)
 }
 \arguments{
 \item{seqfile}{character with the file path of the fasta file (it should be .fasta and contain onle 1 sequence)}
