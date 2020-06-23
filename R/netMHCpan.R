@@ -28,7 +28,9 @@ RunNetMHCPan <- function(seqfile, allele, rthParam = 0.50, rltParam= 2.0, tParam
   if(is.null(softwarePath) | !dir.exists(softwarePath)){
     stop("ERROR: missing netMHCpan path")
   }
-
+  if(!.CheckAllele(allele)){
+    stop(paste(allele, "NOT Found, Please check allele name"))
+  }
   if(stringr::str_detect(basename(seqfile),".fasta")){
     datafile <- seqfile
   }else{
@@ -162,20 +164,24 @@ RunMHCAlleles <- function(seqfile, alleleList , rthParam = 0.50, rltParam= 2.0, 
 #' @param rankW float (default 10.0) upper limit for weak binder
 #' @param rankF float (default 10.0) filter to show peptide binders
 #' @param pepLength integer (default 15) length of the tested peptide
-#'
+#' @param context logical. (TRUE default) Context encoding informs the network of the proteolytic context the ligand.
+#' Context is automatically generated from the source protein if the user selects FASTA format. Briefly, context is made
+#' up of 12 amino acids: 3 amino acids upstream of the ligand, 3 first amino acids at the ligand N-terminus,
+#' 3 last amino acids at the ligand C-terminus and 3 amino acids downstream the ligand(in the source protein), all concatenated together.
+#' If the input type is PEPTIDE , the user must specify the ligand context(see https://services.healthtech.dtu.dk/services/NetMHCIIpan-4.0/peptide_cont.example.php ).
 #' @details run netMHCIIpan trhough the sequence fasta file for each MHCII Allele
 #'
 #' @export
 #'
 #' @return a character vector with Strong Binders (SB) and Weak Binders (WB)
 
-RunNetMHCIIPan <- function(seqfile, alleles, rankS = 0.5, rankW = 10, rankF = 10, pepLength = 15){
-  ret <- .RunNetMHCIIPan(seqfile, alleles, rankS , rankW, rankF, pepLength)
+RunNetMHCIIPan <- function(seqfile, alleles, rankS = 2, rankW = 10, rankF = 10, pepLength = 15, context = TRUE){
+  ret <- .RunNetMHCIIPan(seqfile, alleles, rankS , rankW, rankF, pepLength, context = context)
   ret <- FormatOut(ret)
   class(ret) <- c("RAPIMHCII", class(ret))
   return(ret)
 }
-.RunNetMHCIIPan <- function(seqfile, alleles, rankS = 0.5, rankW = 10, rankF = 10, pepLength = 15){
+.RunNetMHCIIPan <- function(seqfile, alleles, rankS = 2, rankW = 10, rankF = 10, pepLength = 15, context ){
   softwarePath <- .GetPath(FALSE)
   if(is.null(softwarePath) | !dir.exists(softwarePath)){
     stop("ERROR: missing netMHCIIpan path")
@@ -211,7 +217,7 @@ RunNetMHCIIPan <- function(seqfile, alleles, rankS = 0.5, rankW = 10, rankF = 10
                  ranks      = paste("-rankS", rankS),
                  rank       = paste("-rankW", rankW),
                  BA         = "-BA",
-                 context    = "-context")
+                 context    = ifelse(context,"-context",""))
  nm <- names(arguments)
   arguments <- str_replace_all(arguments,"//","/")
   names(arguments) <- nm
@@ -246,7 +252,7 @@ RunNetMHCIIPan <- function(seqfile, alleles, rankS = 0.5, rankW = 10, rankF = 10
 #' @export
 #'
 #' @return a data.frame
-RunMHCIIAlleles <- function(seqfile, alleleList ,rankS = 0.5, rankW = 10, rankF = rankW, pepLength = 15, nCores ){
+RunMHCIIAlleles <- function(seqfile, alleleList ,rankS = 2, rankW = 10, rankF = rankW, pepLength = 15, nCores ){
   softwarePath <- .GetPath(FALSE)
 
 
@@ -277,7 +283,7 @@ RunMHCIIAlleles <- function(seqfile, alleleList ,rankS = 0.5, rankW = 10, rankF 
 #' Run a peptides between 8 to 14 mers along a fasta sequence (from file)
 #'
 #' @param seqfile character with the file path of the fasta file (it should be .fasta and contain onle 1 sequence)
-#' @param alleleGroup see GetAlleleList
+#' @param alleleGroup character in c("All","DRB", "DQ","DP","Mouse") see GetAlleleList
 #' @param rankS float (default 0.5) upper limit for strong binder
 #' @param rankW float (default 10.0) upper limit for weak binder
 #' @param rankF float (default 10.0) filter to show peptide binders
@@ -289,7 +295,7 @@ RunMHCIIAlleles <- function(seqfile, alleleList ,rankS = 0.5, rankW = 10, rankF 
 #' @export
 #'
 #' @return an RAPIMHCII data.frame like obsejt
-RunAllMHCII <- function(seqfile, alleleGroup ,rankS = 0.5, rankW = 10, rankF = rankW, pepLength = 15, nCores ){
+RunAllMHCII <- function(seqfile, alleleGroup = c("All","DRB", "DQ","DP","Mouse") ,rankS = 2, rankW = 10, rankF = rankW, pepLength = 15, nCores ){
   if(missing(nCores)){
     nCores <- parallel::detectCores()-1
     cat(paste("\nSetting number of cores to", nCores," (since nCores args is missing)\n"))

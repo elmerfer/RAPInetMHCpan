@@ -135,6 +135,16 @@ GetAlleleList <- function(nSegments = 10,
 
 }
 
+.CheckAllele <- function(allele){
+  softwarePath <- RAPInetMHCpan:::.GetPath()
+  allele.names.file <- stringr::str_replace_all( file.path(softwarePath, "data/allelenames" ),"//","/")
+  if(file.exists(allele.names.file)==FALSE){
+    stop("error: File not found")
+  }
+  HLA.table <- read.table(allele.names.file)
+  return(any(stringr::str_detect(HLA.table$V1, allele)))
+}
+
 BuildPeptideFile <- function(peptide){
   fname <- tempfile(pattern = "RAPInetMHCpan", tmpdir = tempdir(), fileext = ".pep")
   writeLines(peptide, con = fname)

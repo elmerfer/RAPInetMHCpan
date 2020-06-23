@@ -86,3 +86,11 @@ RsubSubjunc <- function(file,paired = TRUE, ...){
 RsubFeatureCounts <- function(filebam,...){
 
 }
+
+# fc <- featureCounts(files = "/home/elmer/Elmer/FLENI/RNAseq/35252/35252_1_val_1.fq.subjunc.BAM",
+#                     annot.inbuilt = "hg19",
+#                     isPairedEnd = TRUE,
+#                     juncCounts = TRUE,
+#                     genome = "/home/elmer/Elmer/FLENI/NGS/hg19/hg19.fa",
+#                     countChimericFragments = TRUE
+#                     )
