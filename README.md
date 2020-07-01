@@ -1,5 +1,5 @@
 # RAPInetMHCpan
-RAPInetMHCpan: a library to facilitate the instaltion and used of both netHCpan and netMHCIIpan neural networks for prediction of peptide binders (up to now only available for Linux,  Mac in progress)
+RAPInetMHCpan: a library to facilitate the installation and used of both netHCpan and netMHCIIpan neural networks for prediction of peptide binders (up to now only available for Linux,  Mac in progress)
 
 ## Installation of RAPInetMHCpan
 download the precompiled version of [RAPInetMHCpan](https://github.com/elmerfer/RAPInetMHCpan/blob/master/RAPInetMHCpan_0.1.0.tar.gz), then use 
@@ -27,7 +27,7 @@ You will need to install from CRAN
 
 You will need to install from [Bioconductor](http://www.bioconductor.org)
 * [BiocParallel](https://bioconductor.org/packages/release/bioc/html/BiocParallel.html)
-### Before the instalation of netMHCpan and netMHCIIpan
+### Before the installation of netMHCpan and netMHCIIpan
 Please be sure that you have the right shell to run netMHCpan and netMHCIIpan. They both use the "tcsh", a Unix based shell compatible with cshel (a shel to run c code).
 
 To verify if you have it in your machine, please type from a console terminal the following command 
