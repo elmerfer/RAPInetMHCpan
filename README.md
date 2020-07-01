@@ -1,7 +1,9 @@
 # RAPInetMHCpan
-RAPInetMHCpan: a library to facilitate the installation and used of both netHCpan and netMHCIIpan neural networks for prediction of peptide binders (up to now only available for Linux,  Mac in progress)
+RAPInetMHCpan: a library to facilitate the installation and use of both netMHCpan and netMHCIIpan neural networks for prediction of peptides binding to MHC molecules (up to now only available for Linux,  Mac in progress)
 
-## Installation of RAPInetMHCpan
+## Installation of the library RAPInetMHCpan 
+You may choose one of the following choices (please check the prerequisites)
+### Download the precomplied version and install from R console or RStudio
 download the precompiled version of [RAPInetMHCpan](https://github.com/elmerfer/RAPInetMHCpan/blob/master/RAPInetMHCpan_0.1.0.tar.gz), then use 
 ```R
 install.packages("...../RAPInetMHCpan_0.1.0.tar.gz", repos = NULL, type = "source")
@@ -23,13 +25,15 @@ You will need to install from CRAN
 * [openxlsx](https://cran.r-project.org/web/packages/openxlsx/index.html)
 * [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html)
 * [stringr](https://cran.r-project.org/web/packages/stringr/index.html)
-* [parallel](https://cran.r-project.org/web/packages/parallel/index.html)
+* [seqinr](https://cran.r-project.org/web/packages/seqinr/index.html)
 
 You will need to install from [Bioconductor](http://www.bioconductor.org)
 * [BiocParallel](https://bioconductor.org/packages/release/bioc/html/BiocParallel.html)
 ### Before the installation of netMHCpan and netMHCIIpan
 Please be sure that you have the right shell to run netMHCpan and netMHCIIpan. They both use the "tcsh", a Unix based shell compatible with cshel (a shel to run c code).
 
+## Installation of the library RAPInetMHCpan 
+### Check if the appropriate C shell is installed in your machine
 To verify if you have it in your machine, please type from a console terminal the following command 
 'tsch --version'
 if succeed you will see something like this:
@@ -37,12 +41,12 @@ if succeed you will see something like this:
 if not installed try 'sudo apt-get install tcsh' and verify. 
 
 If it is done, you may continue installing netMHCpan and netMHCIIpan through RAPInetMHCpan
-### Installation of netMHCpan and netMHCIIpan with RAPInetMHCpan
+### Installation of netMHCpan and netMHCIIpan with RAPInetMHCpan into R
 Follow the instructions and fill the form to receive the rights to download [netMHCpan](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.0) and [netMHCIIpan](https://services.healthtech.dtu.dk/service.php?NetMHCIIpan-3.2) and save them to your favorite directory.
 Onpen an R session or RStudio and type:
 ```R
-installNetMHCPan(file = "/home/.../myfavoritedir/netMHCpan-4.0a.Linux.tar.gz" , data = NULL, dir = "/where i whant/dir")
-installNetMHCIIPan(file = "/home/.../myfavoritedir/netMHCIIpan-4.a.Linux.tar.gz" , data = NULL, dir = "/where i whant/dir")
+installNetMHCPan(file = "/home/.../myfavoritedir/netMHCpan-VERSION.Linux.tar.gz" , data = NULL, dir = "/where i whant/dir")
+installNetMHCIIPan(file = "/home/.../myfavoritedir/netMHCIIpan-VERSION.Linux.tar.gz" , data = NULL, dir = "/where i whant/dir")
 ```
 It will print on console:
 
@@ -52,14 +56,12 @@ or
 
 `netMHCIIpan Installation OK`
 
-### Tutorial
-See examples [here](https://github.com/elmerfer/RAPInetMHCpan/blob/master/vignette/RAPInetMHCpan.html)
 ### Testing the library
 Please download and run the following R script file [test.rapiNetMHCpan](https://github.com/elmerfer/RAPInetMHCpan/blob/master/test.rapiNetMHCpan.R)
 ## Authors
 
-* **Elmer A. Fernández** - *Idea and Initial work* - Centro de Investigación en Inmunología y Enfermedades Infecciosas (CIDIE) - Univ. Católica de Córdoba - CONICET, Argentina 
-* **Macarena Rodriguez Walker** - *Sequence analysis* - Centro de Investigación en Inmunología y Enfermedades Infecciosas (CIDIE) - Univ. Católica de Córdoba - CONICET, Argentina 
+* **Elmer A. Fernández** - *Idea and Initial work* - Centro de Investigación y Desarrollo en Inmunología y Enfermedades Infecciosas (CIDIE) - Univ. Católica de Córdoba - CONICET, Argentina 
+* **Macarena Rodriguez Walker** - *Sequence analysis* - Centro de Investigación y Desarrollo en Inmunología y Enfermedades Infecciosas (CIDIE) - Univ. Católica de Córdoba - CONICET, Argentina 
 ## License
 
 This project is licensed under the GPL 3-0 License 
