@@ -32,7 +32,7 @@ You will need to install from [Bioconductor](http://www.bioconductor.org)
 ### Before the installation of netMHCpan and netMHCIIpan
 Please be sure that you have the right shell to run netMHCpan and netMHCIIpan. They both use the "tcsh", a Unix based shell compatible with cshel (a shel to run c code).
 
-## Installation of the library RAPInetMHCpan 
+## Installing the netMHCpan and netMHCIIpan softwares
 ### Check if the appropriate C shell is installed in your machine
 To verify if you have it in your machine, please type from a console terminal the following command 
 'tsch --version'
