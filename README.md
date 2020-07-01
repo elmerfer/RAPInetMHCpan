@@ -1,5 +1,5 @@
 # RAPInetMHCpan
-RAPInetMHCpan: a library to facilitate the installation and use of both netMHCpan and netMHCIIpan neural networks for prediction of peptides binding to MHC molecules (up to now only available for Linux,  Mac in progress)
+RAPInetMHCpan: a library to facilitate the installation and use of both [netMHCpan](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.0) and [netMHCIIpan](https://services.healthtech.dtu.dk/service.php?NetMHCIIpan-3.2)  neural networks for prediction of peptides binding to MHC molecules (up to now only available for Linux,  Mac in progress)
 
 ## Installation of the library RAPInetMHCpan 
 You may choose one of the following choices (please check the prerequisites)
@@ -65,6 +65,13 @@ Please download and run the following R script file [test.rapiNetMHCpan](https:/
 ## License
 
 This project is licensed under the GPL 3-0 License 
+
+## Sotware citation
+NetMHCpan-4.0: Improved Peptide–MHC Class I Interaction Predictions Integrating Eluted Ligand and Peptide Binding Affinity Data. Vanessa Jurtz 1, Sinu Paul 2, Massimo Andreatta, Paolo Marcatili, Bjoern Peters, and Morten Nielsen. The Journal of Immunology (2017) ji1700893; DOI: 10.4049/jimmunol.1700893 
+
+Improved prediction of MHC II antigen presentation through integration and motif deconvolution of mass spectrometry MHC eluted ligand data.
+Reynisson B, Barra C, Kaabinejadian S, Hildebrand WH, Peters B, Nielsen M. J Proteome Res 2020 Apr 30. doi: 10.1021/acs.jproteome.9b00874.
+
 
 
 
