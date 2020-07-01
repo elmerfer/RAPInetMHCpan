@@ -45,6 +45,7 @@ If it is done, you may continue installing netMHCpan and netMHCIIpan through RAP
 Follow the instructions and fill the form to receive the rights to download [netMHCpan](https://services.healthtech.dtu.dk/service.php?NetMHCpan-4.0) and [netMHCIIpan](https://services.healthtech.dtu.dk/service.php?NetMHCIIpan-3.2) and save them to your favorite directory.
 Onpen an R session or RStudio and type:
 ```R
+library(RAPInetMHCpan)
 installNetMHCPan(file = "/home/.../myfavoritedir/netMHCpan-VERSION.Linux.tar.gz" , data = NULL, dir = "/where i whant/dir")
 installNetMHCIIPan(file = "/home/.../myfavoritedir/netMHCIIpan-VERSION.Linux.tar.gz" , data = NULL, dir = "/where i whant/dir")
 ```
