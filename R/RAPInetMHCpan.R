@@ -82,7 +82,7 @@ library(seqinr)
   rl[id] <- paste("setenv\tNMHOME\t",dirname(file),sep="")
   id<- which(str_detect(rl, "scratch"))
   if(length(id)==0) {
-    id <- which(str_detect(rl, "\tsetenv  TMPDIR  /tmp/"  ))
+    id <- which(str_detect(rl, "\tsetenv  TMPDIR  /tmp"  ))
     rl[id] <- str_replace(rl[id],"/tmp/", file.path(dirname(file), "tmp"))
   }else{
     rl[id] <- str_replace(rl[id],"/scratch", file.path(dirname(file), "tmp"))
@@ -91,6 +91,8 @@ library(seqinr)
 
   writeLines(text=rl, con = file)
 }
+
+
 # Internal function for testing instalation
 .TestCode <- function(dir){
   if(str_detect(dir,"MHCII")==TRUE){
