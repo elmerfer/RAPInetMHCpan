@@ -2,6 +2,7 @@
 #' RunNetMHCPan
 #'
 #' Run a peptides between 8 to 14 mers along a fasta sequence (from file)
+#' now running for netMHCpan 4.1
 #'
 #' @param seqfile character with the file path of the fasta file (it should be .fasta and contain onle 1 sequence)
 #' @param allele a character vector with the HLA sequences  c("HLA-A01:01") or c("HLA-A01:01","HLA-A02:01") and so on. If NULL it will be automatically downloaded from the netMHCpan server (it may take time)

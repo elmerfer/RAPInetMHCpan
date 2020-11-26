@@ -56,7 +56,7 @@ installNetMHCPan4.1 <- function(file = NULL , data = NULL, dir = ".", version = 
 # Internal function for config edition
 .EditTCSHfile.v4.1 <- function(file.info){
   if(file.exists(file.info$fullPath)==FALSE){
-    stop(paste0("ERROR: ejectution file", file.info$Name, "not found")
+    stop(paste0("ERROR: ejectution file", file.info$Name, "not found"))
   }
 
   # file <- file.path(dir,paste(files.in.tar[1],"netMHCpan",sep=""))
@@ -67,7 +67,7 @@ installNetMHCPan4.1 <- function(file = NULL , data = NULL, dir = ".", version = 
   id<- which(stringr::str_detect(rl, "scratch"))
   if(length(id)==0) {
     id <- which(stringr::str_detect(rl, "\tsetenv  TMPDIR  /tmp"  ))
-    rl[id] <- paste0("\tsetenv  TMPDIR  ",file.info$softwareDirectory, "tmp"))
+    rl[id] <- paste0("\tsetenv  TMPDIR  ",file.info$softwareDirectory, "tmp")
   }else{
     rl[id] <- str_replace(rl[id],"/scratch", file.path(dirname(file), "tmp"))
   }
@@ -104,7 +104,7 @@ installNetMHCPan4.1 <- function(file = NULL , data = NULL, dir = ".", version = 
       stop("Error, installation went wrong")
     }
   }else{
-    res <- paste0(dir,"/",software,"netMHCpan",sep=""), args = "-p test/test.pep", stdout = TRUE)
+    res <- system2(paste0(dir,"/",software,"netMHCpan",sep=""), args = "-p test/test.pep", stdout = TRUE)
     if(any(res == "   1 HLA-A*02:01      AAAWYLWEV AAAWYLWEV  0  0  0  0  0    AAAWYLWEV         PEPLIST 0.4403830    0.472  0.74258 <= SB")){
       cat("\n netMHCpan Installation OK\n")
     }else{
@@ -129,3 +129,78 @@ installNetMHCPan4.1 <- function(file = NULL , data = NULL, dir = ".", version = 
   class(ret) <- c("SoftwareInfo",class(ret))
   return(ret)
 }
+
+
+.RunNetMHCPan <- function(seqfile, allele, rthParam = 0.50, rltParam= 2.0, tParam = -99.9002, pLength, fileInfo){
+  hla <- allele
+  softwarePath <- .GetPath()
+  if(is.null(softwarePath) | !dir.exists(softwarePath)){
+    stop("ERROR: missing netMHCpan path")
+  }
+  if(!.CheckAllele(allele)){
+    stop(paste(allele, "NOT Found, Please check allele name"))
+  }
+  if(stringr::str_detect(basename(seqfile),".fasta")){
+    datafile <- seqfile
+  }else{
+    if(stringr::str_detect(basename(seqfile),".pep")){
+      datafile <- paste("-p ",seqfile,sep="")
+    }else{
+      stop("ERROR file should end in fasta or pep")
+    }
+  }
+  if(missing(pLength)){
+    long.pep <- paste(8:11,collapse = ",")
+  }else{
+    long.pep <- pLength
+  }
+
+  command <- fileInfo$fullPath
+
+  # command <- str_replace_all(command,"//","/")
+  arguments <- c(file = datafile,
+                 syn = paste("-syn ",file.path(fileInfo$softwareDirectory,"Linux_x86_64/data/synlist.bin"),sep = ""),
+                 tdir = paste("-tdir ", file.path(fileInfo$softwareDirectory,"tmp/netMHCpanXXXXXX"),sep = ""),
+                 rdir = paste("-rdir ", file.path(fileInfo$softwareDirectory,"Linux_x86_64"),sep = ""),
+                 hlapseudo = paste("-hlapseudo ", file.path(fileInfo$softwareDirectory,"Linux_x86_64/data/MHC_pseudo.dat"),sep = ""),
+                 thrfmt = paste("-thrfmt ", file.path(fileInfo$softwareDirectory,"Linux_x86_64/data/threshold/%s.thr.%s"),sep = ""),
+                 version = paste("-version ", file.path(fileInfo$softwareDirectory,"Linux_x86_64/data/version"),sep = ""),
+                 allname = paste("-allname ", file.path(fileInfo$softwareDirectory,"Linux_x86_64/data/allelenames"),sep = ""),
+                 rth = paste("-rth ",rthParam, sep = ""),
+                 rlt = paste("-rlt ",rltParam, sep = ""),
+                 t = paste("-t ",tParam,sep = ""),
+                 v = "-v",
+                 BA= "-BA",
+                 a = paste("-a", NULL),
+                 l= paste("-l ",long.pep))
+  nm <- names(arguments)
+  arguments <- str_replace_all(arguments,"//","/")
+  names(arguments) <- nm
+  # res <- unlist(lapply(hla,function(al){
+  al <- stringr::str_remove_all(hla,"\\*")
+    arguments["a"] <- paste("-a",al)
+    # print(arguments["a"])
+    s1 <- system2(command = command, stdout = TRUE, args = arguments)
+    # print(paste("Longitud seq:",length(s1)))
+    # binders <- c(which(str_detect(s1,"SB")),which(str_detect(s1,"WB")))
+    # class(s1) <- "RAPIMHC"
+    # if(length(binders)>0){
+    #   return(s1[binders])
+    # }else return(NA)
+  # }))
+}
+
+Format.Out <- function(resRAPIMHC){
+  id.ini <- which(stringr::str_detect(resRAPIMHC, " Pos         MHC        Peptide      Core Of Gp Gl Ip Il") ) + 2
+  id.fin <- rev(which(stringr::str_detect(resRAPIMHC, "---------------------------------------------------------------------------------------------------------------------------"  )))[1]-1
+
+  ret <- data.frame(do.call(rbind, lapply(id.ini:id.fin, function(i){
+
+      re <- unlist(stringr::str_split(resRAPIMHC[i]," "))
+    re <- re[re != ""]
+    re <- re[ 1:16]
+  }    )))
+  colnames(ret) <- c("Pos","MHC","Peptide","Core","Of","Gp","Gl","Ip","Il","Icore","Identity","Score_EL","%Rank_EL","Score_BA","%Rank_BA","Aff(nM)")
+  return(ret)
+}
+
