@@ -26,6 +26,7 @@ You will need to install from CRAN
 * [ggplot2](https://cran.r-project.org/web/packages/ggplot2/index.html)
 * [stringr](https://cran.r-project.org/web/packages/stringr/index.html)
 * [seqinr](https://cran.r-project.org/web/packages/seqinr/index.html)
+* [ggseqlogo](https://cran.r-project.org/web/packages/ggseqlogo/index.html)
 
 You will need to install from [Bioconductor](http://www.bioconductor.org)
 * [BiocParallel](https://bioconductor.org/packages/release/bioc/html/BiocParallel.html)
